@@ -1,51 +1,78 @@
-.main-catalog { 
-    max-width: 1000px; 
+@mixin flex($direction, $justify, $align, $gap, $wrap) {
     display: flex;
-    justify-content: center;
-    flex-direction: column;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+    gap: $gap; 
+    flex-wrap: $wrap;
+}
+
+@mixin width-height($width, $max-width, $height) {
+    width: $width;
+    max-width: $max-width;
+    height: $height;
+}
+
+.main-catalog { 
+    @include flex(column, center, none, none, none);
+    max-width: 1000px; 
 
     .search-bar {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        max-width: 100%;
-        height: 50px;
+        @include flex(none, center, center, none, none);
+        @include width-height(100%, 100%, 50px);
         border-radius: 10px;
 
-        input {
-            height: 100%;
-            width: 100%;
-        }
+        input { @include width-height(100%, 100%, 100%);}
 
         .img-button {
-            width: 50px;
-            height: 100%;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            @include flex(none, center, center, none, none);
+            @include width-height(50px, 50px, 100%);
             background-color: rgb(185, 183, 183);
-
+            text-align: center;
+            
             .small-image {
                 width: 20px;
                 color: gray;
             }
         }
     }
-}
 
+    .catalog {
+        @include flex(row, center, none, 20px, wrap);
+        @include width-height(100%, 100%, none);
 
-.small-product {
-    max-width: 200px;
-}
+        .product {
+            @include flex(column, none, center, none, none);
+            width: 100%;
+            background-color: rgb(232, 232, 232);
 
-.small-product img {
-    width: 150px;
-    text-align: center;
-}
+            .product-informations {
+                @include flex(column, none, none, none, none);
+                @include width-height(100%, 100%, 100%);
+                border-top: 1px solid rgb(8, 8, 8);
+                padding: 10px;
 
-.span-catalog {
-    color: green;
-    font-size: 25px;
+                span { font-weight: bold; }
+
+                .span-catalog {
+                    color: green;
+                    font-size: 25px;
+                }
+
+                p {
+                    color: rgb(117, 117, 117);
+                    font-size: 15px;
+                }
+            }
+        }
+
+        .small-product {
+            max-width: 200px;
+
+            img {
+                width: 150px;
+                text-align: center;
+            }
+        }
+    }
 }
