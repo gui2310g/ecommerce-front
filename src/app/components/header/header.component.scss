@@ -1,0 +1,49 @@
+@mixin flex($direction, $justify, $align, $gap, $wrap) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+    gap: $gap; 
+    flex-wrap: $wrap;
+}
+
+.header-user { background-color: #ffe500; }
+
+.header-admin {
+    background-color: #0baf1d;
+    color: white;
+
+    nav .user {
+        @include flex(column, center, center, 3px, none);
+        gap: 3px;
+
+        span { font-size: 10px; }
+
+        a { color: white;}
+    }
+}
+
+.header {
+    height: 60px;
+
+    nav {
+        @include flex(none, space-around, center, none, none);
+        height: 100%;
+        color: gray;
+        font-weight: bold;
+
+        div {
+            @include flex(none, none, center, 15px, none);
+        
+            .small-image {
+                width: 20px;
+                color: gray;
+            }
+
+            a {
+                text-decoration: none;
+                color: gray;
+            }
+        }
+    }
+}   
