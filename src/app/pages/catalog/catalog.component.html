@@ -11,7 +11,18 @@
         </div>
     </section>
 
-    <section class="catalog"></section>
+    <section class="catalog">
+        @for(product of products; track product.id) {
+            <div class="product small-product">
+                <img [src]="product.image" alt="imagem do produto">
+                <hr>
+                <div class="product-informations">
+                    <span class="span-catalog">R$ {{product.price}}</span>
+                    <p>{{product.name}}</p>
+                </div>
+            </div>
+        }
+    </section>
 
     <button href="#" class="button">
         <span>carregar mais</span>
